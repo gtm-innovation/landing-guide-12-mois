@@ -1,0 +1,372 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Page « Vos 12 premiers mois en bourse » : fragment injectable (bloc HTML Gutenberg), racine .mrlm.v2 (thème « le guide au centre », choisi sur le canevas le 4 novembre 2026).
+   Maquette du 4 novembre 2026 : images en local (dossier img/), à remplacer par les URL de la médiathèque ;
+   formulaire simulé, à brancher sur le Worker (calculator: "guide-12-mois"). */
+.mrlm.v2 { --ink:#0C1513; --mut:#4E5B58; --line:#D5DEDB; --paper:#EDF2F0; --red:#C42536; --green:#007A63;
+  --p1:#007585; --p2:#1764D8; --p3:#7A2FD0; --p4:#8C5A00;
+  container-type:inline-size; color:var(--ink); font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size:17px; line-height:1.55; }
+.mrlm.v2 :where(*, *::before, *::after) { box-sizing:border-box; }
+.mrlm.v2 :where(h1, h2, h3, p, ul, ol, figure) { margin:0; padding:0; }
+.mrlm.v2 :where(a) { color:inherit; }
+.mrlm.v2 .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+.mrlm.v2 section { padding:72px 0; }
+.mrlm.v2 section + section { border-top:1px solid var(--line); }
+.mrlm.v2 h2 { font-size:34px; line-height:1.12; letter-spacing:-.02em; font-weight:800; max-width:24ch; }
+.mrlm.v2 .intro { color:var(--mut); max-width:60ch; margin-top:12px; }
+
+/* --- en-tête : fond nuit, le guide au centre --- */
+.mrlm.v2 .hero { background:var(--ink); color:#fff; padding:72px 0 0; border-top:0; overflow:hidden; text-align:center; }
+.mrlm.v2 .hero .wrap { display:flex; flex-direction:column; align-items:center; }
+.mrlm.v2 .meta { font-size:15px; color:#7FE7D3; font-weight:600; }
+.mrlm.v2 h1 { font-size:64px; line-height:1; letter-spacing:-.035em; font-weight:800; margin:16px 0 18px; }
+.mrlm.v2 h1 .nw { white-space:nowrap; }
+.mrlm.v2 .lead { font-size:19px; color:#C9D6D2; max-width:52ch; }
+.mrlm.v2 .hero .formzone { width:100%; max-width:720px; margin-top:30px; text-align:left; }
+.mrlm.v2 :is(.hero, .final) input[type=text], .mrlm.v2 :is(.hero, .final) input[type=email] { border-color:#fff; }
+.mrlm.v2 :is(.hero, .final) button { background:#00D7B2; color:var(--ink); font-weight:800; }
+.mrlm.v2 :is(.hero, .final) button:hover { background:#3BE6C7; }
+.mrlm.v2 :is(.hero, .final) .consent { color:#9FB0AB; }
+.mrlm.v2 :is(.hero, .final) .consent input { accent-color:#00D7B2; }
+.mrlm.v2 :is(.hero, .final) .err { color:#FF8A95; }
+.mrlm.v2 .hero .err { text-align:center; }
+.mrlm.v2 .hero .ok { text-align:center; } .mrlm.v2 :is(.hero, .final) .ok p { color:#C9D6D2; } .mrlm.v2 .hero .ok .dl { justify-content:center; }
+.mrlm.v2 :is(.hero, .final) .ok .dl a.btn { background:#00D7B2; color:var(--ink); } .mrlm.v2 :is(.hero, .final) .ok .dl a.sec { background:none; color:#fff; border-color:#fff; }
+.mrlm.v2 .stage { position:relative; width:100%; max-width:980px; height:360px; margin-top:44px; }
+.mrlm.v2 .stage img { position:absolute; display:block; height:auto; border-radius:3px; box-shadow:0 30px 60px -20px rgba(0,0,0,.75); }
+.mrlm.v2 .stage .p1 { width:27.5%; left:7%; top:60px; transform:rotate(-7deg); }
+.mrlm.v2 .stage .p2 { width:27.5%; right:23%; top:60px; transform:rotate(7deg); }
+.mrlm.v2 .stage .cv { width:32.6%; left:33.7%; top:0; box-shadow:0 30px 70px -20px rgba(0,0,0,.9); }
+.mrlm.v2 .stage .ph { width:17.3%; right:6%; top:40px; border-radius:20px; border:7px solid #26302E; }
+
+/* formulaire */
+.mrlm.v2 form .row { display:grid; grid-template-columns:minmax(0, .8fr) minmax(0, 1.2fr) auto; gap:10px; }
+.mrlm.v2 input[type=text], .mrlm.v2 input[type=email] { width:100%; font:inherit; font-size:16px; padding:13px 14px; border:1.5px solid #B9C6C2; border-radius:8px; background:#fff; color:var(--ink); }
+.mrlm.v2 input:focus-visible, .mrlm.v2 button:focus-visible, .mrlm.v2 a:focus-visible, .mrlm.v2 summary:focus-visible { outline:3px solid var(--p1); outline-offset:2px; }
+.mrlm.v2 button, .mrlm.v2 .btn { font:inherit; font-size:16px; font-weight:700; padding:13px 22px; border:0; border-radius:8px; background:var(--ink); color:#fff; cursor:pointer; white-space:nowrap; text-decoration:none; display:inline-block; }
+.mrlm.v2 button:hover, .mrlm.v2 .btn:hover { background:#24302D; }
+.mrlm.v2 .consent { display:flex; gap:10px; align-items:flex-start; margin-top:12px; font-size:14px; color:var(--mut); line-height:1.4; }
+.mrlm.v2 .consent input { margin-top:3px; accent-color:var(--p1); width:16px; height:16px; flex:none; }
+.mrlm.v2 .err { color:var(--red); font-size:14px; margin-top:8px; min-height:1em; }
+.mrlm.v2 .ok h3 { font-size:22px; letter-spacing:-.01em; }
+.mrlm.v2 .ok p { color:var(--mut); margin:6px 0 16px; }
+.mrlm.v2 .ok .dl { display:flex; gap:12px; flex-wrap:wrap; }
+.mrlm.v2 .ok .dl a.sec { background:none; color:var(--ink); border:1.5px solid var(--ink); }
+
+
+/* --- quatre étapes, quatre résultats --- */
+.mrlm.v2 h2.wide { max-width:26ch; }
+.mrlm.v2 .phases4 { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); margin-top:44px; }
+.mrlm.v2 .ph4 { display:flex; flex-direction:column; padding:0 26px; border-left:1px solid var(--line); }
+.mrlm.v2 .ph4 .num { font-size:60px; line-height:1; font-weight:800; letter-spacing:-.04em; color:var(--ph); }
+.mrlm.v2 .ph4 h3 { margin-top:14px; font-size:21px; font-weight:800; letter-spacing:-.01em; }
+.mrlm.v2 .ph4 h3 span { display:block; font-size:14px; font-weight:600; color:var(--mut); letter-spacing:0; }
+.mrlm.v2 .ph4 p { margin-top:16px; font-size:16px; line-height:1.5; font-weight:600; }
+.mrlm.v2 .ph4 ol { list-style:none; margin-top:auto; padding-top:16px; border-top:3px solid var(--ph); display:flex; flex-direction:column; gap:6px; }
+.mrlm.v2 .ph4 li { font-size:14px; line-height:1.35; color:var(--mut); }
+.mrlm.v2 .ph4 li b { color:var(--ph); font-weight:800; margin-right:8px; }
+.mrlm.v2 .ph4 p { margin-bottom:24px; }
+.mrlm.v2 .q1 { --ph:var(--p1); } .mrlm.v2 .q2 { --ph:var(--p2); } .mrlm.v2 .q3 { --ph:var(--p3); } .mrlm.v2 .q4 { --ph:var(--p4); }
+
+/* --- les erreurs, et ce que le guide fait faire à la place --- */
+.mrlm.v2 .es-head, .mrlm.v2 .es li { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr) 150px; column-gap:32px; }
+.mrlm.v2 .es-head { margin-top:36px; padding-bottom:10px; border-bottom:2px solid var(--ink); font-size:13px; font-weight:800; }
+.mrlm.v2 .es-head .e { color:var(--red); } .mrlm.v2 .es-head .s { color:var(--green); } .mrlm.v2 .es-head .c { color:var(--mut); text-align:right; }
+.mrlm.v2 .es { list-style:none; }
+.mrlm.v2 .es li { align-items:baseline; padding:15px 0; border-bottom:1px solid var(--line); }
+.mrlm.v2 .es .m { grid-column:1; grid-row:1; font-size:12px; font-weight:800; color:var(--mut); }
+.mrlm.v2 .es .e { grid-column:1; grid-row:2; font-size:16px; line-height:1.35; }
+.mrlm.v2 .es .s { grid-column:2; grid-row:1 / span 2; align-self:end; font-size:16px; line-height:1.35; font-weight:700; }
+.mrlm.v2 .es .c { grid-column:3; grid-row:1 / span 2; align-self:end; text-align:right; font-size:22px; font-weight:800; color:var(--red); white-space:nowrap; line-height:1.1; letter-spacing:-.01em; }
+.mrlm.v2 .es .c small { display:block; font-size:12px; font-weight:600; color:var(--mut); letter-spacing:0; margin-top:2px; }
+.mrlm.v2 .es-more { margin-top:16px; font-weight:700; }
+.mrlm.v2 .errs-note { font-size:14px; color:var(--mut); margin-top:8px; }
+
+/* --- un mois type, décortiqué --- */
+.mrlm.v2 .anat { display:grid; grid-template-columns:400px minmax(0, 1fr); gap:80px; align-items:center; }
+.mrlm.v2 .anat-img { position:relative; }
+.mrlm.v2 .anat-img img { width:100%; height:auto; display:block; border-radius:3px; box-shadow:0 1px 2px rgba(12,21,19,.10), 0 22px 44px -20px rgba(12,21,19,.5); }
+.mrlm.v2 .mk, .mrlm.v2 .parts .n { width:30px; height:30px; border-radius:50%; background:var(--ink); color:#fff; font-size:14px; font-weight:800; display:flex; align-items:center; justify-content:center; flex:none; }
+.mrlm.v2 .mk { position:absolute; left:-15px; box-shadow:0 0 0 4px #fff; }
+.mrlm.v2 .parts { list-style:none; margin-top:26px; border-top:2px solid var(--ink); }
+.mrlm.v2 .parts li { display:grid; grid-template-columns:44px minmax(0, 1fr); gap:12px; padding:16px 0; border-bottom:1px solid var(--line); font-size:15px; line-height:1.45; color:var(--mut); }
+.mrlm.v2 .parts strong { display:block; font-size:17px; color:var(--ink); }
+.mrlm.v2 .anat-end { margin-top:18px; font-size:17px; font-weight:800; }
+
+/* --- la méthode de la rédaction --- */
+.mrlm.v2 .proof { display:grid; grid-template-columns:minmax(0, 1fr) 500px; gap:80px; align-items:start; }
+.mrlm.v2 .pf-pts { margin-top:28px; border-bottom:1px solid var(--line); }
+.mrlm.v2 .pf-pts p { padding:14px 0; border-top:1px solid var(--line); font-size:15px; line-height:1.5; color:var(--mut); }
+.mrlm.v2 .pf-pts strong { color:var(--ink); }
+.mrlm.v2 .calc-k { display:block; font-size:13px; font-weight:800; color:var(--mut); }
+.mrlm.v2 .calc-t { display:block; margin-top:6px; font-size:21px; font-weight:800; letter-spacing:-.01em; }
+.mrlm.v2 .calc { margin-top:14px; border-top:2px solid var(--ink); }
+.mrlm.v2 .calc div { display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; }
+.mrlm.v2 .calc dt { color:var(--mut); } .mrlm.v2 .calc dd { font-weight:700; text-align:right; white-space:nowrap; }
+.mrlm.v2 .calc .r dt { color:var(--ink); font-weight:700; } .mrlm.v2 .calc .r dd { font-weight:800; font-size:16px; }
+.mrlm.v2 .calc .g dd { color:var(--green); } .mrlm.v2 .calc .b dd { color:var(--red); }
+.mrlm.v2 .calc .tot { align-items:baseline; border-top:2px solid var(--ink); border-bottom:0; margin-top:-1px; padding-top:14px; }
+.mrlm.v2 .calc .tot dt { color:var(--ink); font-weight:800; font-size:17px; }
+.mrlm.v2 .calc .tot dd { font-size:34px; line-height:1; font-weight:800; letter-spacing:-.03em; color:var(--red); white-space:nowrap; }
+.mrlm.v2 .calc-note { margin-top:14px; font-size:13px; line-height:1.5; color:var(--mut); }
+
+/* --- appel final : fond nuit, comme l'en-tête --- */
+.mrlm.v2 .final { text-align:left; background:var(--ink); color:#fff; border-top:0; }
+.mrlm.v2 .final + section { border-top:0; }
+.mrlm.v2 .final .fin { display:grid; grid-template-columns:340px minmax(0, 1fr); gap:90px; align-items:center; }
+.mrlm.v2 .fin-couv { width:300px; height:auto; display:block; justify-self:center; border-radius:3px; transform:rotate(-3deg); box-shadow:0 30px 60px -20px rgba(0,0,0,.75); }
+.mrlm.v2 .fin-rec { list-style:none; margin-top:24px; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); column-gap:36px; border-top:1px solid #2C3A37; }
+.mrlm.v2 .fin-rec li { padding:13px 0; border-bottom:1px solid #2C3A37; font-size:14px; line-height:1.4; color:#A9B8B4; }
+.mrlm.v2 .fin-rec strong { display:block; font-size:17px; color:#fff; }
+.mrlm.v2 .final .formzone { margin-top:28px; }
+
+/* --- questions --- */
+.mrlm.v2 .faq { margin-top:28px; border-top:2px solid var(--ink); max-width:780px; }
+.mrlm.v2 details { border-bottom:1px solid var(--line); }
+.mrlm.v2 summary { list-style:none; cursor:pointer; padding:18px 36px 18px 0; font-weight:700; font-size:18px; position:relative; }
+.mrlm.v2 summary::-webkit-details-marker { display:none; }
+.mrlm.v2 summary::after { content:"+"; position:absolute; right:4px; top:14px; font-size:24px; font-weight:400; color:var(--mut); }
+.mrlm.v2 details[open] summary::after { content:"−"; }
+.mrlm.v2 details p { padding:0 0 20px; color:#2A3633; max-width:68ch; }
+.mrlm.v2 .legal { font-size:13px; color:var(--mut); margin-top:40px; max-width:80ch; line-height:1.5; }
+
+@container (max-width: 860px) {
+  .mrlm.v2 h1 { font-size:52px; }
+  .mrlm.v2 .stage { height:300px; }
+  .mrlm.v2 .phases4 { grid-template-columns:repeat(2, minmax(0, 1fr)); row-gap:40px; }
+  .mrlm.v2 .errs { grid-template-rows:none; grid-auto-flow:row; }
+  .mrlm.v2 .anat { grid-template-columns:300px minmax(0, 1fr); gap:48px; }
+  .mrlm.v2 .final .fin { grid-template-columns:220px minmax(0, 1fr); gap:48px; }
+  .mrlm.v2 .fin-couv { width:200px; }
+  .mrlm.v2 .proof { grid-template-columns:1fr; gap:40px; }
+}
+@container (max-width: 560px) {
+  .mrlm.v2 { font-size:16px; }
+  .mrlm.v2 .wrap { padding:0 16px; }
+  .mrlm.v2 section { padding:48px 0; }
+  .mrlm.v2 .hero { padding:52px 0 0; }
+  .mrlm.v2 .stage { height:230px; margin-top:28px; }
+  .mrlm.v2 .stage .p2 { display:none; }
+  .mrlm.v2 .stage .p1 { width:36%; left:0; top:40px; }
+  .mrlm.v2 .stage .cv { width:44%; left:28%; }
+  .mrlm.v2 .stage .ph { width:26%; right:0; top:30px; border-width:5px; border-radius:14px; }
+  .mrlm.v2 .meta { font-size:13px; }
+  .mrlm.v2 .facts { margin:18px 0 18px; padding:10px 0; }
+  .mrlm.v2 form .row { gap:8px; }
+  .mrlm.v2 input[type=text], .mrlm.v2 input[type=email] { padding:11px 12px; }
+  .mrlm.v2 h1 { font-size:38px; }
+  .mrlm.v2 h2 { font-size:27px; }
+  .mrlm.v2 .lead { font-size:17px; }
+  .mrlm.v2 .facts { gap:14px; }
+  .mrlm.v2 .facts div { font-size:13px; flex:1; }
+  .mrlm.v2 .facts b { font-size:17px; white-space:nowrap; }
+  .mrlm.v2 form .row { grid-template-columns:1fr; }
+  .mrlm.v2 form button { width:100%; }
+  .mrlm.v2 .phases4 { grid-template-columns:1fr; row-gap:0; margin-top:28px; }
+  .mrlm.v2 .ph4 { display:grid; grid-template-columns:52px minmax(0, 1fr); column-gap:12px; padding:20px 0; border-left:0; border-top:1px solid var(--line); }
+  .mrlm.v2 .ph4 .num { font-size:38px; grid-row:span 3; }
+  .mrlm.v2 .ph4 h3 { margin-top:0; font-size:19px; }
+  .mrlm.v2 .ph4 h3 span { display:inline; margin-left:6px; font-size:13px; }
+  .mrlm.v2 .ph4 p { margin-top:8px; font-size:15px; }
+  .mrlm.v2 .ph4 p { margin-bottom:0; }
+  .mrlm.v2 .ph4 ol { margin-top:10px; }
+  .mrlm.v2 .ph4 ol { grid-column:2; padding-top:8px; flex-direction:row; flex-wrap:wrap; gap:2px 12px; }
+  .mrlm.v2 .ph4 li { font-size:13px; }
+  .mrlm.v2 .es-head { display:none; }
+  .mrlm.v2 .es { margin-top:22px; border-top:2px solid var(--ink); }
+  .mrlm.v2 .es li { grid-template-columns:minmax(0, 1fr) auto; row-gap:6px; padding:14px 0; }
+  .mrlm.v2 .es .m { grid-column:1; grid-row:1; }
+  .mrlm.v2 .es .c { grid-column:2; grid-row:1; align-self:baseline; font-size:18px; }
+  .mrlm.v2 .es .c small { display:inline; margin-left:4px; font-size:11px; }
+  .mrlm.v2 .es .e { grid-column:1 / -1; grid-row:2; font-size:14px; color:var(--red); font-weight:600; text-decoration:line-through; text-decoration-thickness:1px; }
+  .mrlm.v2 .es .s { grid-column:1 / -1; grid-row:3; align-self:auto; font-size:15px; color:var(--green); }
+  .mrlm.v2 .anat { grid-template-columns:1fr; gap:28px; }
+  .mrlm.v2 .anat-img { width:220px; margin:0 auto; }
+  .mrlm.v2 .mk { width:26px; height:26px; font-size:12px; left:-13px; }
+  .mrlm.v2 .parts li { grid-template-columns:38px minmax(0, 1fr); }
+  .mrlm.v2 .final .fin { grid-template-columns:1fr; gap:32px; }
+  .mrlm.v2 .fin-couv { width:170px; }
+  .mrlm.v2 .fin-rec { grid-template-columns:1fr; }
+  .mrlm.v2 .calc div { font-size:14px; } .mrlm.v2 .calc .tot dd { font-size:28px; }
+}
+@media (prefers-reduced-motion: reduce) { .mrlm.v2 * { transition:none !important; } }
+</style>
+
+<div class="mrlm v2">
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="meta">Guide gratuit de la rédaction MoneyRadar · 26 pages, A4 et téléphone</p>
+      <h1>Vos 12 premiers mois <span class="nw">en bourse</span></h1>
+      <p class="lead">Une étape par mois, 60 actions à cocher et les 12 erreurs qui coûtent de l'argent, chiffrées en euros.</p>
+      <div class="formzone" id="recevoir">
+          <form novalidate>
+            <div class="row">
+              <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" aria-label="Prénom">
+              <input type="email" name="email" placeholder="Adresse email" autocomplete="email" aria-label="Adresse email" required>
+              <button type="submit">Recevoir le guide</button>
+            </div>
+            <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+            <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte de recevoir le guide, puis la newsletter MoneyRadar et ses offres par email. Désinscription en un clic.</span></label>
+            <p class="err" role="alert" aria-live="polite"></p>
+          </form>
+        </div>
+      <div class="stage" aria-hidden="true">
+        <img class="p1" src="https://cdn.jsdelivr.net/gh/gtm-innovation/landing-guide-12-mois@main/img/m01.webp" alt="" width="909" height="1287">
+        <img class="p2" src="https://cdn.jsdelivr.net/gh/gtm-innovation/landing-guide-12-mois@main/img/chiffres.webp" alt="" width="909" height="1287">
+        <img class="cv" src="https://cdn.jsdelivr.net/gh/gtm-innovation/landing-guide-12-mois@main/img/couv.webp" alt="" width="909" height="1287">
+        <img class="ph" src="https://cdn.jsdelivr.net/gh/gtm-innovation/landing-guide-12-mois@main/img/mob.webp" alt="" width="590" height="1052">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="wide">Quatre étapes de trois mois, et ce que vous savez faire à la fin de chacune</h2>
+      <p class="intro">Chaque mois tient en deux pages : ce qu'il faut savoir, cinq actions à cocher et l'erreur à éviter.</p>
+      <div class="phases4">
+        <div class="ph4 q1"><span class="num">01</span><h3>Démarrer <span>mois 1 à 3</span></h3><p>Votre PEA est ouvert, votre premier ETF acheté, et un versement part tout seul chaque mois.</p><ol><li><b>01</b>L’enveloppe et le courtier</li><li><b>02</b>Le premier ETF</li><li><b>03</b>Le versement automatique</li></ol></div>
+        <div class="ph4 q2"><span class="num">02</span><h3>Comprendre <span>mois 4 à 6</span></h3><p>Vous savez ce que contient votre ETF, ce que vaut un dividende, et comment juger une action.</p><ol><li><b>04</b>Ce qu’on possède</li><li><b>05</b>Le premier dividende</li><li><b>06</b>La première action</li></ol></div>
+        <div class="ph4 q3"><span class="num">03</span><h3>Élargir <span>mois 7 à 9</span></h3><p>Vous achetez des actions américaines au bon prix, vous traversez une baisse sans vendre, vos frais sont vérifiés.</p><ol><li><b>07</b>Les actions américaines</li><li><b>08</b>La première baisse</li><li><b>09</b>Vos frais</li></ol></div>
+        <div class="ph4 q4"><span class="num">04</span><h3>Consolider <span>mois 10 à 12</span></h3><p>Votre déclaration est juste, vous connaissez votre vrai rendement, et vous savez quoi faire l’année suivante.</p><ol><li><b>10</b>La déclaration</li><li><b>11</b>Le bilan</li><li><b>12</b>Et après</li></ol></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="wide">Chaque mois, l'erreur à éviter et ce que vous faites à la place</h2>
+      <div class="es-head" aria-hidden="true"><span class="e">L'erreur</span><span class="s">Ce que le guide vous fait faire</span><span class="c">Ce que l'erreur coûte</span></div>
+      <ol class="es"><li><span class="m">Mois 1</span><span class="e">Ouvrir son PEA à sa banque « parce que c’est plus simple »</span><span class="s">Un courtier en ligne sans droits de garde</span><span class="c">≈ 1 300 €<small>sur dix ans</small></span></li><li><span class="m">Mois 3</span><span class="e">Attendre le bon moment pour commencer</span><span class="s">Un versement automatique le lendemain du salaire</span><span class="c">−9 400 €<small>au bout de trente ans</small></span></li><li><span class="m">Mois 8</span><span class="e">Vendre après une baisse de 10 %</span><span class="s">Relire le tableau des six crises, et ne rien vendre</span><span class="c">−5 463 €<small>sur 10 000 € placés</small></span></li><li><span class="m">Mois 9</span><span class="e">Payer des droits de garde chaque année</span><span class="s">Transférer son PEA : il garde son ancienneté</span><span class="c">−11 284 €<small>en vingt ans</small></span></li><li><span class="m">Mois 10</span><span class="e">Oublier le formulaire 3916</span><span class="s">Savoir si votre compte est tenu en France</span><span class="c">4 500 €<small>d’amende sur trois ans</small></span></li><li><span class="m">Mois 12</span><span class="e">Empiler les enveloppes sans plan</span><span class="s">Une deuxième enveloppe seulement pour une vraie raison</span><span class="c">−14 610 €<small>en vingt ans</small></span></li></ol>
+      <p class="es-more">Et 6 autres erreurs dans le guide, une pour chaque mois.</p>
+      <p class="errs-note">Montants calculés par la rédaction MoneyRadar, chiffres au 2 novembre 2026. Les performances passées ne préjugent pas des performances futures.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap anat">
+      <figure class="anat-img"><img src="https://cdn.jsdelivr.net/gh/gtm-innovation/landing-guide-12-mois@main/img/m01.webp" alt="Première page du mois 1 du guide" width="909" height="1287" loading="lazy"><span class="mk" style="top:13%">1</span><span class="mk" style="top:28%">2</span><span class="mk" style="top:48%">3</span><span class="mk" style="top:80%">4</span></figure>
+      <div>
+        <h2>Un mois type, décortiqué</h2>
+        <p class="intro">Les 12 mois suivent la même construction, sur deux pages. Ici, le mois 1.</p>
+        <ol class="parts"><li><span class="n">1</span><span><strong>L’essentiel en une phrase</strong>Si vous ne lisez qu’une ligne du mois, c’est celle-ci.</span></li><li><span class="n">2</span><span><strong>Ce qu’il faut savoir</strong>Les règles et les choix du mois, expliqués sans jargon, avec des tableaux.</span></li><li><span class="n">3</span><span><strong>Les calculs qui tranchent</strong>Un graphique chiffré pour chaque décision, avec son hypothèse.</span></li><li><span class="n">4</span><span><strong>Cinq actions à cocher</strong>Ce que vous faites ce mois-ci, avec le lien utile. Page 2 : le comparatif et l’erreur du mois, chiffrée.</span></li></ol>
+        <p class="anat-end">Le tout, douze fois : un mois, une étape.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap proof">
+      <div>
+        <h2>Écrit par la rédaction MoneyRadar</h2>
+        <p class="intro">La rédaction qui compare les courtiers, les ETF et les enveloppes sur moneyradar.org. Le guide suit les mêmes règles que nos pages.</p>
+        <div class="pf-pts">
+          <p><strong>Des sources officielles.</strong> service-public.fr, l’AMF, impots.gouv.fr, les grilles tarifaires des courtiers.</p>
+          <p><strong>Chaque montant recalculé.</strong> Avec son hypothèse écrite, comme dans cet exemple.</p>
+          <p><strong>Des chiffres datés.</strong> Arrêtés au 2&nbsp;novembre 2026.</p>
+        </div>
+      </div>
+      <div>
+        <span class="calc-k">Le calcul du mois 12, tel qu’il est dans le guide</span>
+        <span class="calc-t">Empiler les enveloppes sans plan</span>
+        <dl class="calc">
+          <div><dt>Versement</dt><dd>150&nbsp;€ par mois</dd></div>
+          <div><dt>Durée</dt><dd>20 ans</dd></div>
+          <div><dt>Rendement avant frais</dt><dd>7&nbsp;% par an (une hypothèse)</dd></div>
+          <div><dt>Frais de l’ETF dans le PEA</dt><dd>0,20&nbsp;% par an</dd></div>
+          <div><dt>Frais de l’assurance-vie d’agence</dt><dd>2&nbsp;% par an</dd></div>
+          <div class="r g"><dt>Capital dans le PEA</dt><dd>76&#8239;270&nbsp;€</dd></div>
+          <div class="r b"><dt>Capital dans l’assurance-vie</dt><dd>61&#8239;660&nbsp;€</dd></div>
+          <div class="tot"><dt>L’écart sur vingt ans</dt><dd>−14&#8239;610&nbsp;€</dd></div>
+        </dl>
+        <p class="calc-note">Versements en fin de mois, frais déduits du rendement. Le même détail accompagne chacun des 12&nbsp;montants.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap fin">
+      <img class="fin-couv" src="https://cdn.jsdelivr.net/gh/gtm-innovation/landing-guide-12-mois@main/img/couv.webp" alt="Couverture du guide « Vos 12 premiers mois en bourse »" width="909" height="1287" loading="lazy">
+      <div>
+        <h2>Commencez le mois 1 ce week-end</h2>
+        <ul class="fin-rec">
+          <li><strong>26 pages en A4</strong>à imprimer ou à lire à l’écran</li>
+          <li><strong>La version téléphone</strong>le même guide, mis en page pour le mobile</li>
+          <li><strong>12 erreurs chiffrées</strong>une par mois, avec son hypothèse</li>
+          <li><strong>Gratuit</strong>par email, téléchargeable tout de suite</li>
+        </ul>
+        <div class="formzone">
+          <form novalidate>
+            <div class="row">
+              <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" aria-label="Prénom">
+              <input type="email" name="email" placeholder="Adresse email" autocomplete="email" aria-label="Adresse email" required>
+              <button type="submit">Recevoir le guide</button>
+            </div>
+            <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+            <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte de recevoir le guide, puis la newsletter MoneyRadar et ses offres par email. Désinscription en un clic.</span></label>
+            <p class="err" role="alert" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Vos questions</h2>
+      <div class="faq">
+        <details><summary>Le guide est-il vraiment gratuit ?</summary><p>Oui. Vous laissez votre adresse email, vous recevez le PDF, et vous pouvez vous désinscrire de la newsletter à tout moment, en un clic.</p></details>
+        <details><summary>À qui s'adresse-t-il ?</summary><p>À ceux qui n'ont jamais investi en bourse, ou qui ont ouvert un compte sans savoir quoi en faire. Aucune connaissance n'est nécessaire : chaque terme est expliqué au moment où il sert.</p></details>
+        <details><summary>Faut-il beaucoup d'argent pour commencer ?</summary><p>Non. Le guide part d'un versement mensuel, et un PEA s'ouvre dès quelques euros chez la plupart des courtiers en ligne. Il prévoit aussi de garder d'abord une épargne de précaution.</p></details>
+        <details><summary>Est-ce un conseil en investissement ?</summary><p>Non. Le guide explique une méthode et donne les chiffres pour décider vous-même. Les produits cités sont des exemples, pas des recommandations personnalisées.</p></details>
+        <details><summary>Les chiffres sont-ils à jour ?</summary><p>Ils sont arrêtés au 2 novembre 2026. Les taux et plafonds qui changent sont réunis sur une seule page, mise à jour chaque année.</p></details>
+        <details><summary>Puis-je le lire sur mon téléphone ?</summary><p>Oui. Vous recevez deux fichiers : un PDF au format A4, à imprimer ou à lire sur ordinateur, et une version mise en page pour le téléphone.</p></details>
+      </div>
+      <p class="legal">Ce guide est une information, pas un conseil en investissement. Investir en bourse comporte un risque de perte en capital. Certains liens du guide sont des liens partenaires : MoneyRadar peut être rémunéré, sans surcoût pour vous. Votre adresse sert à vous envoyer le guide et la newsletter ; elle est hébergée par notre prestataire d'emailing et n'est jamais revendue.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  var root = document.currentScript.previousElementSibling;
+  // PDF dans la médiathèque (médias 63300 et 63301, 04/11/2026).
+  var PDF_A4 = 'https://moneyradar.org/wp-content/uploads/2026/11/guide-12-mois-bourse.pdf', PDF_MOB = 'https://moneyradar.org/wp-content/uploads/2026/11/guide-12-mois-bourse-mobile.pdf';
+  var WORKER = 'https://mric-rapport-impots.lingering-frost-26a0.workers.dev';
+  [].forEach.call(root.querySelectorAll('.formzone'), function (zone) {
+    var form = zone.querySelector('form'), err = form.querySelector('.err');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.email.value.trim(), prenom = form.prenom.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'Vérifiez votre adresse email.'; form.email.focus(); return; }
+      if (!form.consent.checked) { err.textContent = 'Cochez la case pour recevoir le guide.'; return; }
+      if (form.company.value) return;
+      err.textContent = '';
+      var btn = form.querySelector('button'); btn.disabled = true; btn.textContent = 'Envoi…';
+      var fini = function () {
+        var nom = prenom ? ', ' + prenom.replace(/[<>&"]/g, '') : '';
+        zone.innerHTML = '<div class="ok" role="status"><h3>C’est parti' + nom + '.</h3>'
+          + '<p>Le guide arrive aussi dans votre boîte mail. Vous pouvez le télécharger dès maintenant :</p>'
+          + '<div class="dl"><a class="btn" href="' + PDF_A4 + '" download>PDF A4 (1,2 Mo)</a>'
+          + '<a class="btn sec" href="' + PDF_MOB + '" download>Version téléphone (1,2 Mo)</a></div></div>';
+      };
+      var refus = function (msg) { btn.disabled = false; btn.textContent = 'Recevoir le guide'; err.textContent = msg; };
+      fetch(WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+        email: email, prenom: prenom, consent: true, consentTimestamp: new Date().toISOString(),
+        calculator: 'guide-12-mois', company: form.company.value, inputs: {}, results: {},
+        meta: { source: 'landing-guide', page: location.pathname }
+      }) }).then(function (r) {
+        if (r.status === 422) return r.json().catch(function () { return {}; }).then(function (j) {
+          if (j.suggestion) { form.email.value = j.suggestion; refus('Vouliez-vous dire ' + j.suggestion + ' ? Vérifiez puis validez à nouveau.'); }
+          else refus('Cette adresse ne peut pas recevoir d’email. Vérifiez-la, ou utilisez une autre adresse.');
+          form.email.focus();
+        });
+        if (r.status === 429) return refus('Trop de demandes pour cette adresse. Réessayez plus tard, ou téléchargez le guide depuis l’email déjà reçu.');
+        fini(); // succès, ou panne du serveur : le visiteur garde l'accès au guide
+      }).catch(fini);
+    });
+  });
+})();
+</script>
