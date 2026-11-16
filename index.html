@@ -10,6 +10,9 @@
 .mrlm.v2 :where(*, *::before, *::after) { box-sizing:border-box; }
 .mrlm.v2 :where(h1, h2, h3, p, ul, ol, figure) { margin:0; padding:0; }
 .mrlm.v2 :where(a) { color:inherit; }
+/* Astra pose une couleur explicite sur h1-h3 : une regle qui vise l'element bat l'heritage,
+   d'ou un H1 noir sur le fond nuit du hero. On neutralise, les titres heritent a nouveau. */
+.mrlm.v2 h1, .mrlm.v2 h2, .mrlm.v2 h3 { color:inherit; }
 .mrlm.v2 .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
 .mrlm.v2 section { padding:72px 0; }
 .mrlm.v2 section + section { border-top:1px solid var(--line); }
