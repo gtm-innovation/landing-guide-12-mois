@@ -359,7 +359,7 @@
       fetch(WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
         email: email, prenom: prenom, consent: true, consentTimestamp: new Date().toISOString(),
         calculator: 'guide-12-mois', company: form.company.value, inputs: {}, results: {},
-        meta: { source: 'landing-guide', page: location.pathname }
+        meta: { source: 'landing-guide', page: location.pathname, src: (function(){ try { return (new URLSearchParams(location.search).get('src') || '').slice(0, 48); } catch (e) { return ''; } })() }
       }) }).then(function (r) {
         if (r.status === 422) return r.json().catch(function () { return {}; }).then(function (j) {
           if (j.suggestion) { form.email.value = j.suggestion; refus('Vouliez-vous dire ' + j.suggestion + ' ? Vérifiez puis validez à nouveau.'); }
